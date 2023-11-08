@@ -4,6 +4,8 @@ let bees = {}
 let saveData = localStorage.getItem("BEE_IDLE")
 let lastchild = Date.now()
 
+let achievements = ""
+
 let buycount = 1
 
 try{
@@ -73,8 +75,9 @@ setInterval(function(){
             }
         }
 
-        document.querySelector(".swarmtracker").style.width = ((bees.swarm.pos/5000)*100) + "%"
-        document.querySelector(".lilbee").style.left = "calc(" + ((bees.swarm.pos/5000)*100) + "% - " + 64*(bees.swarm.pos/5000) + "px)"
+        document.querySelector(".swarmtracker").style.width = (bees.swarm.pos/5000*100) + "%"
+        document.querySelector(".lilbee").style.left = "calc(" + (bees.swarm.pos/5000*100) + "% - " + 64*(bees.swarm.pos/5000) + "px)"
+        document.querySelector(".lilbee").style.top = Math.sin(Date.now()/100)*3 + "px"
     }
 
     if (bees.worker.bees != 0 && hive.nectar > 0){
@@ -113,6 +116,9 @@ setInterval(function(){
     document.querySelector(".lilbee").src = "img/" + document.querySelector(".beesel").value + ".png"
     document.querySelector(".lilhive").src = "img/" + document.querySelector(".hivesel").value + ".png"
     document.querySelector(".lilflower").src = "img/" + document.querySelector(".flowersel").value + ".png"
+    document.querySelector(".lilbeeprev").src = "img/" + document.querySelector(".beesel").value + ".png"
+    document.querySelector(".lilhiveprev").src = "img/" + document.querySelector(".hivesel").value + ".png"
+    document.querySelector(".lilflowerprev").src = "img/" + document.querySelector(".flowersel").value + ".png"
 }, 0)
 
 setInterval(function(){
