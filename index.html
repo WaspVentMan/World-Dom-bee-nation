@@ -41,13 +41,13 @@
 
         <h1>JOBS</h1>
         <div style="width: max-content; text-align: left;">
-            <input class="" type="text" style="width: 100%;"><br>
-            <button onclick="if (totalBee()+1 <= hive.bees){bees.swarmqueue += 1}">+</button>
-            <button onclick="if (bees.swarm.bees-1 >= 0){bees.swarmqueue -= 1}">-</button><i class="swarm"></i><br>
-            <button onclick="if (totalBee()+1 <= hive.bees){bees.worker.bees += 1}">+</button>
-            <button onclick="if (bees.worker.bees-1 >= 0){bees.worker.bees -= 1}">-</button><i class="worker"></i><br>
-            <button onclick="if (totalBee()+1 <= hive.bees){bees.constructor.bees += 1}">+</button>
-            <button onclick="if (bees.constructor.bees-1 >= 0){bees.constructor.bees -= 1}">-</button><i class="constructor"></i><br>
+            <input class="buycount" type="number" iname="quantity" min="1" style="width: 100%;" value="1"><br>
+            <button onclick="if (totalBee()+buycount <= hive.bees){bees.swarmqueue += buycount}">+</button>
+            <button onclick="if (bees.swarm.bees-buycount >= 0){bees.swarmqueue -= buycount}">-</button><i class="swarm"></i><br>
+            <button onclick="if (totalBee()+buycount <= hive.bees){bees.worker.bees += buycount}">+</button>
+            <button onclick="if (bees.worker.bees-buycount >= 0){bees.worker.bees -= buycount}">-</button><i class="worker"></i><br>
+            <button onclick="if (totalBee()+buycount <= hive.bees){bees.constructor.bees += buycount}">+</button>
+            <button onclick="if (bees.constructor.bees-buycount >= 0){bees.constructor.bees -= buycount}">-</button><i class="constructor"></i><br>
             <button disabled>+</button>
             <button disabled>-</button><i class="queen"></i>
         </div>
@@ -61,6 +61,15 @@
         <select class="hivesel">
             <option class="hiveskin0" value="hive" selected>Hive</option>
             <option class="hiveskin1" value="hiveplusplus" disabled>H++</option>
+        </select>
+
+        <select class="flowersel">
+            <option class="flowerskin0" value="flower" selected>Flower</option>
+            <option class="flowerskin1" value="flowerplusplus" disabled>F++</option>
+        </select>
+
+        <select class="bgsel">
+            <option class="bgskin0" value="" selected>None</option>
         </select>
 
         <h1>ACHIEVEMENTS</h1>

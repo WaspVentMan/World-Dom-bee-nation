@@ -4,6 +4,8 @@ let bees = {}
 let saveData = localStorage.getItem("BEE_IDLE")
 let lastchild = Date.now()
 
+let buycount = 1
+
 try{
     if (saveData != null){
         saveData = JSON.parse(saveData)
@@ -40,6 +42,8 @@ setInterval(function(){
     document.querySelector(".queen").textContent = " Queens: " + Math.round(bees.queen.bees*100)/100
 
     document.querySelector('.queencost').textContent = 100*((bees.queen.bees+1)**2) + ' HONEY + BEE'
+
+    buycount = parseInt(document.querySelector('.buycount').value)
 
     if (bees.swarm.pos <= 0){
         bees.swarm.bees += bees.swarmqueue
