@@ -89,6 +89,7 @@ for (let x = 0; x < beeslist.length; x++){
 function cosprevupdate(x){
     document.querySelector(".cosprev").src = "img/" + beeslist[x].img + ".png"
     document.querySelector(".cosname").textContent = beeslist[x].name
+    document.querySelector(".cosinternal").textContent = "(" + beeslist[x].img + ")"
     document.querySelector(".cosart").textContent = beeslist[x].artist
     document.querySelector(".cosart").href = beeslist[x].artistlink
 }
@@ -99,9 +100,13 @@ let t = Date.now()
 
 function gameloop(){
     for (let x = 0; x < hiveVars.length; x++){
-        document.querySelector("." + hiveVars[x]).textContent = numeral(Math.round(hive[hiveVars[x]]*100)/100).format('0.00a')
+        document.querySelector("." + hiveVars[x]).textContent = numeral(hive[hiveVars[x]]).format('0.00a')
         if (x >= 4){
             document.querySelector("." + hiveVars[x]).textContent += "/"
+        }
+
+        if (x == 3){
+            document.querySelector("." + hiveVars[x]).textContent += " (" + numeral(hive[hiveVars[x]]-totalBee()).format('0a') + ")"
         }
     }
 
