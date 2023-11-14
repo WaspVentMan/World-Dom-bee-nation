@@ -14,6 +14,7 @@
     <img class="lilbee" src="img/bee.png" alt="" style="position: fixed; top: 0%; width: 64px; z-index: 1;">
     <img class="lilhive" src="img/hive.png" alt="" style="position: fixed; top: 0%; width: 64px; left: 0%; z-index: 2;">
     <img class="lilflower" src="img/flower.png" alt="" style="position: fixed; top: 0%; width: 64px; right: 0%; z-index: 0;">
+    
     <!-- PUT YOU IN MY OVEN! -->
 
     <center>
@@ -162,46 +163,25 @@
                 <p style="margin: 0%;">Bee</p>
                 <p style="margin: 0%;">Hive</p>
                 <p style="margin: 0%;">Flower</p>
-                <img class="lilbeeprev" src="img/bee.png" style="width: 64px">
-                <img class="lilhiveprev" src="img/hive.png" style="width: 64px">
-                <img class="lilflowerprev" src="img/flower.png" style="width: 64px">
+                <img class="lilbeeprev" src="img/bee.png" style="width: 64px; margin: auto;">
+                <img class="lilhiveprev" src="img/hive.png" style="width: 64px; margin: auto;">
+                <img class="lilflowerprev" src="img/flower.png" style="width: 64px; margin: auto;">
                 <button style="width: 100%;" onclick="updateskin('bee')">Apply</button>
                 <button style="width: 100%;" onclick="updateskin('hive')">Apply</button>
                 <button style="width: 100%;" onclick="updateskin('flower')">Apply</button>
             </div>
 
-            <select class="sel" style="width: 100%;">
-                <optgroup label="Bees">
-                    <option class="beeskin0" value="bee">Bee</option>
-                    <option class="beeskin1" value="beeplusplus" disabled>B++</option>
-                    <option class="beeskin2" value="warmupbee">Warm-Up Bee</option>
-                    <option class="beeskin3" value="maxwell">Jess "Dingus" Maxwell</option>
-                </optgroup>
-                <optgroup label="Hives">
-                    <option class="hiveskin0" value="hive">Hive</option>
-                    <option class="hiveskin1" value="hiveplusplus" disabled>H++</option>
-                </optgroup>
-                <optgroup label="Flowers">
-                    <option class="flowerskin0" value="flower">Flower</option>
-                    <option class="flowerskin1" value="flowerplusplus" disabled>F++</option>
-                </optgroup>
-                <optgroup label="Other">
-                    <option class="otherskin0" value="jonesy" disabled>Jonesy</option>
-                </optgroup>
-            </select>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); max-width: 100%; text-align: center;">
+                <img class="cosprev" src="img/bee.png" alt="" style="width: 128px;">
+                <div style="grid-area: 1 / 2 / 2 / 4; width: 100%;">
+                    <h3 class="cosname">Bee</h3>
+                    <h5 style="margin: 0%;">Artist:</h5>
+                    <a class="cosart" style="margin: 0%;">WaspVentMan</a>
+                </div>
+            </div>
 
             <!-- NEW COS SELECT :o -->
-            <!--<div style="display: grid; grid-template-columns: repeat(6, 1fr); max-width: 100%; text-align: center;">
-                <img src="img/bee.png" style="width: 64px;">
-                <img src="img/hive.png" style="width: 64px;">
-                <img src="img/flower.png" style="width: 64px;">
-                <img src="img/beeplusplus.png" style="width: 64px;">
-                <img src="img/hiveplusplus.png" style="width: 64px;">
-                <img src="img/flowerplusplus.png" style="width: 64px;">
-                <img src="img/jonesy.png" style="width: 64px;">
-                <img src="img/maxwell.png" style="width: 64px;">
-                <img src="img/warmupbee.png" style="width: 64px;">
-            </div>-->
+            <div class="cosgrid" style="display: grid; grid-template-columns: repeat(6, 1fr); max-width: 100%; text-align: center;"></div>
         </details>
 
         <details>
@@ -303,8 +283,9 @@
         <i>Just to let you know, anything in the game could break at any time, don't blame me for the loss of your save file :)</i>
     </center>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" ></script>
 
+    <script src="bees.js"></script>
     <script src="check.js"></script>
     <script src="script.js"></script>
 </body>

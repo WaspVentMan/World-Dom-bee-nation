@@ -12,6 +12,8 @@ if (code != undefined){
 let hive = {}
 let bees = {}
 
+let skinselect = "bee"
+
 let rawstring = ["0"]
 
 for (let x = 0; x < 9; x++){
@@ -61,7 +63,7 @@ function totalBee(){return bees.swarmqueue + bees.swarm.bees + bees.worker.bees 
 
 function updateskin(newskin, i=true){
     if (i){
-        skin[newskin] = document.querySelector(".sel").value
+        skin[newskin] = beeslist[skinselect].img
     }
     document.querySelector(".lil" + newskin).src = "img/" + skin[newskin] + ".png"
     document.querySelector(".lil" + newskin + "prev").src = "img/" + skin[newskin] + ".png"
@@ -74,6 +76,22 @@ if (code != undefined){
 updateskin("bee", i=false)
 updateskin("hive", i=false)
 updateskin("flower", i=false)
+
+for (let x = 0; x < beeslist.length; x++){
+    let temp = document.createElement("img")
+    temp.src = "img/" + beeslist[x].img + ".png"
+    temp.style.width = "64px"
+
+    temp.onclick = function(){skinselect = x; cosprevupdate(x)}
+    document.querySelector(".cosgrid").appendChild(temp)
+}
+
+function cosprevupdate(x){
+    document.querySelector(".cosprev").src = "img/" + beeslist[x].img + ".png"
+    document.querySelector(".cosname").textContent = beeslist[x].name
+    document.querySelector(".cosart").textContent = beeslist[x].artist
+    document.querySelector(".cosart").href = beeslist[x].artistlink
+}
 
 const hiveVars = ["beeswax", "honey", "nectar", "bees"] // "beeswaxcap", "honeycap", "nectarcap", "beecap", 
 
@@ -288,25 +306,21 @@ function acievementloop(){
     if (achievements[0] == "1" || bees.swarm.bees > 0){
         achievements[0] = "1"
         document.querySelector(".ac0").style.backgroundColor = "green"
-        document.querySelector(".otherskin0").removeAttribute("disabled")
     }
 
     if (achievements[1] == "1" || bees.swarm.bees > 0 && bees.worker.bees > 0 && bees.constructors.bees > 0){
         achievements[1] = "1"
         document.querySelector(".ac1").style.backgroundColor = "green"
-        document.querySelector(".flowerskin1").removeAttribute("disabled")
     }
 
     if (achievements[2] == "1" || hive.beeswax >= 100){
         achievements[2] = "1"
         document.querySelector(".ac2").style.backgroundColor = "green"
-        document.querySelector(".beeskin1").removeAttribute("disabled")
     }
 
     if (achievements[3] == "1" || bees.queen.bees > 0){
         achievements[3] = "1"
         document.querySelector(".ac3").style.backgroundColor = "green"
-        document.querySelector(".hiveskin1").removeAttribute("disabled")
     }
 
     // BEESWAXBUFFS
