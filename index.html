@@ -66,6 +66,12 @@
                 <div style="display: grid; grid-template-columns: repeat(1, 1fr); width: 100%; text-align: right;">
                     <input class="buycount" type="number" iname="quantity" min="1" value="1">
 
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; text-align: right; background-color: white;">
+                        <button disabled></button>
+                        <i style="text-align: right; padding-left: 4px;">Unemployed:</i>
+                        <i style="text-align: left; padding-left: 4px;" class="unemployed"></i>
+                    </div>
+
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; text-align: right; background-color: lightgray;">
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; text-align: center;">
                             <button onclick="if (totalBee()+buycount <= hive.bees){bees.swarmqueue += buycount}">+</button>
@@ -178,7 +184,7 @@
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); max-width: 100%; text-align: center;">
                 <img class="cosprev" src="img/null.png" alt="" style="width: 128px;">
                 <div style="grid-area: 1 / 2 / 2 / 4; width: 100%;">
-                    <h3 class="cosname" style="margin-bottom: 0%;">None Selected</h3>
+                    <h3 class="cosname" style="margin-bottom: 0%;">Null</h3>
                     <i class="cosinternal">(null)</i><br><br>
                     <h5 style="margin: 0%;">Artist:</h5>
                     <a class="cosart" style="margin: 0%;" href="">None</a>
@@ -214,6 +220,13 @@
                 </div>
 
                 <input type="range" min="64" max="128" value="128" step="4" class="BSP"><br>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); width: fit-content; text-align: center;">
+                    <p style="margin: 0%; margin-right: 2px; text-align: right;">Decimal Places:</p>
+                    <i class="DPdisp" style="text-align: left; margin-left: 2px;"></i>
+                </div>
+
+                <input type="range" min="0" max="3" value="2" step="1" class="DP"><br>
             </details>
             <details>
                 <summary><h2 style="margin: 0%; display: inline-block">Progress Bar</h2></summary>

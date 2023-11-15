@@ -58,5 +58,29 @@ let beeslist = [
         "artist": "Meeber",
         "artistlink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         "img": "poorimitation"
+    },
+    {
+        "name": "TalliaArt1911",
+        "artist": "@HiveVespa",
+        "artistlink": "https://twitter.com/HiveVespa",
+        "img": "tallia"
+    },
+    {
+        "name": "NinxFlametail",
+        "artist": "@HiveVespa",
+        "artistlink": "https://twitter.com/HiveVespa",
+        "img": "ninx"
+    },
+    {
+        "name": "SHIGUFEVER",
+        "artist": "@HiveVespa",
+        "artistlink": "https://twitter.com/HiveVespa",
+        "img": "sig"
+    },
+    {
+        "name": "DVerdux20",
+        "artist": "@HiveVespa",
+        "artistlink": "https://twitter.com/HiveVespa",
+        "img": "verdux"
     }
 ]

@@ -3,7 +3,7 @@ let code = params.get("b")
 
 if (code != undefined){
     try{
-        code = atob(code)
+        code = atob(atob(atob(atob(atob(code)))))
     } catch {
         location.href = location.href.split("?")[0]
     }
@@ -11,6 +11,8 @@ if (code != undefined){
 
 let hive = {}
 let bees = {}
+
+let decpla = "0.00a"
 
 let skinselect = "bee"
 
@@ -22,6 +24,7 @@ for (let x = 0; x < 9; x++){
 
 let achievements = rawstring
 let beeswaxbuffs = rawstring
+let unlockedskin = rawstring
 let skin = {"bee": "bee", "hive": "hive", "flower": "flower"}
 
 let manager = true
@@ -51,6 +54,9 @@ try{
     if (saveData.beeswaxbuffs != undefined){
         beeswaxbuffs = saveData.beeswaxbuffs
     }
+    if (saveData.unlockedskin != undefined){
+        unlockedskin = saveData.unlockedskin
+    }
     if (bees.constructor != undefined){
         delete bees.constructor
     }
@@ -59,18 +65,32 @@ catch{console.log(":(")}
 
 savecheck()
 
+unlockedskin[0] = "1"
+unlockedskin[1] = "1"
+unlockedskin[2] = "1"
+unlockedskin[7] = "1"
+
 function totalBee(){return bees.swarmqueue + bees.swarm.bees + bees.worker.bees + bees.constructors.bees + bees.queen.bees}
 
 function updateskin(newskin, i=true){
-    if (i){
-        skin[newskin] = beeslist[skinselect].img
+    if (unlockedskin[skinselect] == "1"){
+        if (i){
+            skin[newskin] = beeslist[skinselect].img
+        }
+        document.querySelector(".lil" + newskin).src = "img/" + skin[newskin] + ".png"
+        document.querySelector(".lil" + newskin + "prev").src = "img/" + skin[newskin] + ".png"
     }
-    document.querySelector(".lil" + newskin).src = "img/" + skin[newskin] + ".png"
-    document.querySelector(".lil" + newskin + "prev").src = "img/" + skin[newskin] + ".png"
 }
 
 if (code != undefined){
-    skin.bee = code
+    for (let x = 0; x < beeslist.length; x++){
+        if (beeslist[x].img == code){
+            skin.bee = code
+            unlockedskin[x] = "1"
+            localStorage.setItem("BEE_IDLE", JSON.stringify({"hive": hive, "bees": bees, "achievements": achievements, "skin": skin, "beeswaxbuffs": beeswaxbuffs, "unlockedskin": unlockedskin}))
+            location.href = location.href.split("?")[0]
+        }
+    }
 }
 
 updateskin("bee", i=false)
@@ -81,18 +101,24 @@ for (let x = 0; x < beeslist.length; x++){
     let temp = document.createElement("img")
     temp.src = "img/" + beeslist[x].img + ".png"
     temp.style.width = "64px"
+    temp.style.filter = "opacity(50%) contrast(0%)"
+    temp.className = "select" + x
 
     temp.onclick = function(){skinselect = x; cosprevupdate(x)}
     document.querySelector(".cosgrid").appendChild(temp)
 }
 
 function cosprevupdate(x){
-    document.querySelector(".cosprev").src = "img/" + beeslist[x].img + ".png"
-    document.querySelector(".cosname").textContent = beeslist[x].name
-    document.querySelector(".cosinternal").textContent = "(" + beeslist[x].img + ")"
-    document.querySelector(".cosart").textContent = beeslist[x].artist
-    document.querySelector(".cosart").href = beeslist[x].artistlink
+    if (unlockedskin[x] == "1"){
+        document.querySelector(".cosprev").src = "img/" + beeslist[x].img + ".png"
+        document.querySelector(".cosname").textContent = beeslist[x].name
+        document.querySelector(".cosinternal").textContent = "(" + beeslist[x].img + ")"
+        document.querySelector(".cosart").textContent = beeslist[x].artist
+        document.querySelector(".cosart").href = beeslist[x].artistlink
+    }
 }
+
+cosprevupdate(0)
 
 const hiveVars = ["beeswax", "honey", "nectar", "bees"] // "beeswaxcap", "honeycap", "nectarcap", "beecap", 
 
@@ -100,25 +126,22 @@ let t = Date.now()
 
 function gameloop(){
     for (let x = 0; x < hiveVars.length; x++){
-        document.querySelector("." + hiveVars[x]).textContent = numeral(hive[hiveVars[x]]).format('0.00a')
+        document.querySelector("." + hiveVars[x]).textContent = numeral(hive[hiveVars[x]]).format(decpla)
         if (x >= 4){
             document.querySelector("." + hiveVars[x]).textContent += "/"
-        }
-
-        if (x == 3){
-            document.querySelector("." + hiveVars[x]).textContent += " (" + numeral(hive[hiveVars[x]]-totalBee()).format('0a') + ")"
         }
     }
 
     if (bees.swarmqueue == 0){
-        document.querySelector(".swarm").textContent = numeral(bees.swarm.bees).format('0.00a')
+        document.querySelector(".swarm").textContent = numeral(bees.swarm.bees).format(decpla)
     } else {
-        document.querySelector(".swarm").textContent = numeral(bees.swarm.bees).format('0.00a') + " (" + numeral(bees.swarmqueue).format('0a') + ")"
+        document.querySelector(".swarm").textContent = numeral(bees.swarm.bees).format(decpla) + " (" + numeral(bees.swarmqueue).format('0a') + ")"
     }
 
-    document.querySelector(".worker").textContent = numeral(bees.worker.bees).format('0.00a')
-    document.querySelector(".constructors").textContent = numeral(bees.constructors.bees).format('0.00a')
-    document.querySelector(".queen").textContent = numeral(bees.queen.bees).format('0a')
+    document.querySelector(".unemployed").textContent = numeral(hive["bees"]-totalBee()).format(decpla)
+    document.querySelector(".worker").textContent = numeral(bees.worker.bees).format(decpla)
+    document.querySelector(".constructors").textContent = numeral(bees.constructors.bees).format(decpla)
+    document.querySelector(".queen").textContent = numeral(bees.queen.bees).format(decpla)
 
     if (manager){
         document.querySelector(".manager").textContent = "On"
@@ -127,7 +150,7 @@ function gameloop(){
     }
     
 
-    document.querySelector('.queencost').textContent = numeral(100*((bees.queen.bees+1)**2)).format('0.00a') + ' Honey + 1 Bee'
+    document.querySelector('.queencost').textContent = numeral(100*((bees.queen.bees+1)**2)).format(decpla) + ' Honey + 1 Bee'
 
     buycount = parseInt(document.querySelector('.buycount').value)
 
@@ -143,12 +166,39 @@ function gameloop(){
     }
 
     if (bees.swarm.bees != 0){
+        while (bees.swarm.pos + beemove > 5000 && bees.swarm.pos - beemove < 0){
+            if (bees.swarm.to){
+                document.querySelector(".lilbee").style.transform = "scaleX(1)"
+                let temp = 5000 - bees.swarm.pos
+                bees.swarm.pos += beemove
+                if (bees.swarm.pos >= 5000){
+                    bees.swarm.to = false
+
+                    beemove -= temp
+                    bees.swarm.pos = 5000
+                }
+            }
+
+            else {
+                document.querySelector(".lilbee").style.transform = "scaleX(-1)"
+                let temp = bees.swarm.pos
+                bees.swarm.pos -= beemove
+                if (bees.swarm.pos <= 0){
+                    bees.swarm.to = true
+
+                    beemove -= temp
+                    bees.swarm.pos = 0
+
+                    hive.nectar += bees.swarm.bees
+                }
+            }
+        }
+
         if (bees.swarm.to){
             document.querySelector(".lilbee").style.transform = "scaleX(1)"
             bees.swarm.pos += beemove
             if (bees.swarm.pos >= 5000){
                 bees.swarm.to = false
-                bees.swarm.nectar = 1
                 bees.swarm.pos = 5000
             }
         }
@@ -161,7 +211,7 @@ function gameloop(){
                 bees.swarm.nectar = 0
                 bees.swarm.pos = 0
 
-                hive.nectar += 1*bees.swarm.bees
+                hive.nectar += bees.swarm.bees
             }
         }
 
@@ -245,6 +295,22 @@ function gameloop(){
         document.querySelector('.BSPdisp').textContent = (parseInt(document.querySelector('.BSP').value)/64)*100 + "%"
     }
 
+    if (document.querySelector('.DP').value == "2"){
+        document.querySelector('.DPdisp').textContent = numeral(document.querySelector('.DP').value).format(decpla) + " (Default)"
+        decpla = "0"
+        if (document.querySelector('.DP').value != "0"){decpla += ".0"}
+        if (document.querySelector('.DP').value == "2"){decpla += "0"}
+        else if (document.querySelector('.DP').value == "3"){decpla += "00"}
+        decpla += "a"
+    } else {
+        document.querySelector('.DPdisp').textContent = numeral(document.querySelector('.DP').value).format(decpla)
+        decpla = "0"
+        if (document.querySelector('.DP').value != "0"){decpla += ".0"}
+        if (document.querySelector('.DP').value == "2"){decpla += "0"}
+        else if (document.querySelector('.DP').value == "3"){decpla += "00"}
+        decpla += "a"
+    }
+
     if (document.querySelector('.TITLECLEAR').value == "1"){
         document.querySelector('.TITLECLEARdisp').textContent = "No"
     } else {
@@ -307,23 +373,34 @@ function gameloop(){
 }
 
 function acievementloop(){
+    // SKINS
+    for (let x = 0; x < beeslist.length; x++){
+        if (unlockedskin[x] == "1"){
+            document.querySelector(".select"+x).style.filter = ""
+        }
+    }
+
     // ACHIEVEMENTS
     if (achievements[0] == "1" || bees.swarm.bees > 0){
+        unlockedskin[6] = "1"
         achievements[0] = "1"
         document.querySelector(".ac0").style.backgroundColor = "green"
     }
 
     if (achievements[1] == "1" || bees.swarm.bees > 0 && bees.worker.bees > 0 && bees.constructors.bees > 0){
+        unlockedskin[5] = "1"
         achievements[1] = "1"
         document.querySelector(".ac1").style.backgroundColor = "green"
     }
 
     if (achievements[2] == "1" || hive.beeswax >= 100){
+        unlockedskin[4] = "1"
         achievements[2] = "1"
         document.querySelector(".ac2").style.backgroundColor = "green"
     }
 
     if (achievements[3] == "1" || bees.queen.bees > 0){
+        unlockedskin[3] = "1"
         achievements[3] = "1"
         document.querySelector(".ac3").style.backgroundColor = "green"
     }
@@ -364,7 +441,7 @@ function acievementloop(){
         document.querySelector(".cr3").style.backgroundColor = "lightgray"
     }
 
-    localStorage.setItem("BEE_IDLE", JSON.stringify({"hive": hive, "bees": bees, "achievements": achievements, "skin": skin, "beeswaxbuffs": beeswaxbuffs}))
+    localStorage.setItem("BEE_IDLE", JSON.stringify({"hive": hive, "bees": bees, "achievements": achievements, "skin": skin, "beeswaxbuffs": beeswaxbuffs, "unlockedskin": unlockedskin}))
 }
 
 let gamelife = setInterval(gameloop, 10)
