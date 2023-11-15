@@ -37,7 +37,7 @@ let beeslist = [
     },
     {
         "name": "Jonesy",
-        "artist": "Fortnite",
+        "artist": "Jonesy",
         "artistlink": "https://fortnite.com",
         "img": "jonesy"
     },
@@ -82,5 +82,23 @@ let beeslist = [
         "artist": "@HiveVespa",
         "artistlink": "https://twitter.com/HiveVespa",
         "img": "verdux"
+    },
+    {
+        "name": "Bee-g Hive",
+        "artist": "waspventman",
+        "artistlink": "https://waspventman.co.uk",
+        "img": "beeghive"
+    },
+    {
+        "name": "Bee-g Hive++",
+        "artist": "waspventman",
+        "artistlink": "https://waspventman.co.uk",
+        "img": "beeghiveplusplus"
+    },
+    {
+        "name": "B+++",
+        "artist": "@HiveVespa",
+        "artistlink": "https://twitter.com/HiveVespa",
+        "img": "beeplusplusplus"
     }
 ]

@@ -18,13 +18,14 @@ let skinselect = "bee"
 
 let rawstring = ["0"]
 
-for (let x = 0; x < 9; x++){
+for (let x = 0; x < 8; x++){
     rawstring = rawstring.concat(rawstring)
 }
 
-let achievements = rawstring
-let beeswaxbuffs = rawstring
-let unlockedskin = rawstring
+let achievements = rawstring.concat(rawstring)
+let beeswaxbuffs = rawstring.concat(rawstring)
+let unlockedskin = rawstring.concat(rawstring)
+
 let skin = {"bee": "bee", "hive": "hive", "flower": "flower"}
 
 let manager = true
@@ -38,41 +39,49 @@ let buycount = 1
 try{
     if (saveData != null){
         saveData = JSON.parse(saveData)
-    }
-    if (saveData.hive != undefined){
-        hive = saveData.hive
-    }
-    if (saveData.bees != undefined){
-        bees = saveData.bees
-    }
-    if (saveData.achievements != undefined){
-        achievements = saveData.achievements
-    }
-    if (saveData.skin != undefined){
-        skin = saveData.skin
-    }
-    if (saveData.beeswaxbuffs != undefined){
-        beeswaxbuffs = saveData.beeswaxbuffs
-    }
-    if (saveData.unlockedskin != undefined){
-        unlockedskin = saveData.unlockedskin
-    }
-    if (bees.constructor != undefined){
-        delete bees.constructor
+    
+        if (saveData.hive != undefined){
+            hive = saveData.hive
+        }
+        if (saveData.bees != undefined){
+            bees = saveData.bees
+        }
+        if (saveData.achievements != undefined){
+            achievements = saveData.achievements
+        }
+        if (saveData.skin != undefined){
+            skin = saveData.skin
+        }
+        if (saveData.beeswaxbuffs != undefined){
+            beeswaxbuffs = saveData.beeswaxbuffs
+        }
+        if (saveData.unlockedskin != undefined){
+            unlockedskin = saveData.unlockedskin
+        }
+        if (bees.constructor != undefined){
+            delete bees.constructor
+        }
     }
 }
 catch{console.log(":(")}
 
 savecheck()
 
-unlockedskin[0] = "1"
-unlockedskin[1] = "1"
-unlockedskin[2] = "1"
-unlockedskin[7] = "1"
-
+/**
+ * Returns the total number of bees that aren't unemployed
+ * @returns the total number of bees that aren't unemployed */
 function totalBee(){return bees.swarmqueue + bees.swarm.bees + bees.worker.bees + bees.constructors.bees + bees.queen.bees}
 
+/**
+ * Sets bee, hive or flower to the current value of skinselect, does nothing if skin is locked.
+ * @param {*} newskin Type of cosmetic to be equipped, either "bee", "hive" or "flower"
+ * @param {*} i Used at first launch to apply cosmetics from save file
+ */
 function updateskin(newskin, i=true){
+    if (!i){
+        document.querySelector(".lil" + newskin).src = "img/" + skin[newskin] + ".png"
+        document.querySelector(".lil" + newskin + "prev").src = "img/" + skin[newskin] + ".png"
+    }
     if (unlockedskin[skinselect] == "1"){
         if (i){
             skin[newskin] = beeslist[skinselect].img
@@ -82,7 +91,17 @@ function updateskin(newskin, i=true){
     }
 }
 
-if (code != undefined){
+console.log(achievements)
+
+unlockedskin[0] = "1"
+unlockedskin[1] = "1"
+unlockedskin[2] = "1"
+unlockedskin[7] = "1"
+
+console.log(achievements)
+
+if (code != null){
+    console.log("code")
     for (let x = 0; x < beeslist.length; x++){
         if (beeslist[x].img == code){
             skin.bee = code
@@ -108,6 +127,10 @@ for (let x = 0; x < beeslist.length; x++){
     document.querySelector(".cosgrid").appendChild(temp)
 }
 
+/**
+ * Updates the cosmetic preview
+ * @param {*} x Cosmetic ID
+ */
 function cosprevupdate(x){
     if (unlockedskin[x] == "1"){
         document.querySelector(".cosprev").src = "img/" + beeslist[x].img + ".png"
@@ -124,6 +147,9 @@ const hiveVars = ["beeswax", "honey", "nectar", "bees"] // "beeswaxcap", "honeyc
 
 let t = Date.now()
 
+/**
+ * Main gameloop, controls almost everything
+ */
 function gameloop(){
     for (let x = 0; x < hiveVars.length; x++){
         document.querySelector("." + hiveVars[x]).textContent = numeral(hive[hiveVars[x]]).format(decpla)
@@ -372,6 +398,9 @@ function gameloop(){
     document.querySelector('.bg').style.height = parseInt(document.querySelector('.BS').value)*parseInt(document.querySelector('.TITLECLEAR').value) + "px"
 }
 
+/**
+ * Same as gameloop, but updates things that don't need to be updated as frequently
+ */
 function acievementloop(){
     // SKINS
     for (let x = 0; x < beeslist.length; x++){
@@ -388,7 +417,7 @@ function acievementloop(){
     }
 
     if (achievements[1] == "1" || bees.swarm.bees > 0 && bees.worker.bees > 0 && bees.constructors.bees > 0){
-        unlockedskin[5] = "1"
+        unlockedskin[3] = "1"
         achievements[1] = "1"
         document.querySelector(".ac1").style.backgroundColor = "green"
     }
@@ -400,9 +429,21 @@ function acievementloop(){
     }
 
     if (achievements[3] == "1" || bees.queen.bees > 0){
-        unlockedskin[3] = "1"
+        unlockedskin[5] = "1"
         achievements[3] = "1"
         document.querySelector(".ac3").style.backgroundColor = "green"
+    }
+
+    if (achievements[4] == "1" || beeswaxbuffs[1] == "1"){
+        unlockedskin[9] = "1"
+        achievements[4] = "1"
+        document.querySelector(".ac4").style.backgroundColor = "green"
+    }
+
+    if (achievements[5] == "1" || hive.bees > 1000000000){
+        unlockedskin[8] = "1"
+        achievements[5] = "1"
+        document.querySelector(".ac5").style.backgroundColor = "green"
     }
 
     // BEESWAXBUFFS
@@ -411,6 +452,8 @@ function acievementloop(){
     }
     else if (beeswaxbuffs[0] != "1" && hive.beeswax > 100){
         document.querySelector(".bw0").style.backgroundColor = "lightgreen"
+    } else {
+        document.querySelector(".bw0").style.backgroundColor = "lightgrey"
     }
 
     if (beeswaxbuffs[1] == "1"){
@@ -418,6 +461,8 @@ function acievementloop(){
     }
     else if (beeswaxbuffs[1] != "1" && hive.beeswax > 100 && bees.queen.bees >= 1){
         document.querySelector(".bw1").style.backgroundColor = "lightgreen"
+    } else {
+        document.querySelector(".bw1").style.backgroundColor = "lightgrey"
     }
 
     //CREATION

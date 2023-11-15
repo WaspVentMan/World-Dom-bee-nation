@@ -144,25 +144,29 @@
             <summary><h1 style="margin: 0%; display: inline-block">ACHIEVEMENTS</h1></summary>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); width: fit-content; text-align: center;">
                 <div class="acbox ac0">
-                    <p>So it beegins...</p>
+                    <p>So it bee-gins...</p>
                     <i>Assign 1 bee to the swarm.<br>Reward: Jonsey</i>
                 </div>
                 <div class="acbox ac1">
                     <p>D-hive-ersity!</p>
-                    <i>Get one of each basic bee type.<br>Reward: F++</i>
+                    <i>Get one of each basic bee type.<br>Reward: B++</i>
                 </div>
                 <div class="acbox ac3">
                     <p><i>I am the bee lady, I am the one who jests!</i></p>
-                    <i>Get a queen bee.<br>Reward: H++</i>
+                    <i>Get a queen bee.<br>Reward: F++</i>
                 </div>
                 <div class="acbox ac2">
                     <p>Bee in a candle shop!</p>
-                    <i>Get 100 beeswax.<br>Reward: B++</i>
+                    <i>Get 100 beeswax.<br>Reward: H++</i>
                 </div>
-                <!--<div class="acbox">
+                <div class="acbox ac4">
+                    <p>A taste of automation...</p>
+                    <i>Get the manager.<br>Reward: BeeVentMan</i>
+                </div>
+                <div class="acbox ac5">
                     <p>A beellion bees to get beesiness done!</p>
-                    <i>Get 1 billion bees</i>
-                </div>-->
+                    <i>Get 1 billion bees<br>Reward: Warm-Up Bee</i>
+                </div>
             </div>
         </details>
 
@@ -295,7 +299,7 @@
             
             <details>
                 <summary><h2 style="margin: 0%; display: inline-block">Save Data Management</h2></summary>
-                <button onclick="clearInterval(aclife); localStorage.setItem('BEE_IDLE', JSON.stringify({})); location.reload()">RESET DATA</button>
+                <button onclick="clearInterval(aclife); localStorage.clear(); location.reload()">RESET DATA</button>
             </details>
         </details><br>
         <i>Just to let you know, anything in the game could break at any time, don't blame me for the loss of your save file :)</i>
