@@ -1,3 +1,7 @@
+* {
+    user-select: none;
+}
+
 .acbox {
     background-color: lightgrey;
     border-radius: 10px;

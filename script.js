@@ -417,52 +417,60 @@ function acievementloop(){
     }
 
     // ACHIEVEMENTS
-    if (achievements[0] == "1" || bees.swarm.bees > 0){
-        unlockedskin[6] = "1"
+    if (achievements[0] == "1" || bees.swarm.bees >= 1){
+        unlockedskin[8] = "1"
         achievements[0] = "1"
         document.querySelector(".ac0").style.backgroundColor = "green"
+        unlockMedal(83037)
     }
 
-    if (achievements[1] == "1" || bees.swarm.bees > 0 && bees.worker.bees > 0 && bees.constructors.bees > 0){
+    if (achievements[1] == "1" || bees.swarm.bees >= 1 && bees.worker.bees >= 1 && bees.constructors.bees >= 1){
         unlockedskin[3] = "1"
         achievements[1] = "1"
         document.querySelector(".ac1").style.backgroundColor = "green"
+        unlockMedal(83038)
     }
 
     if (achievements[2] == "1" || hive.beeswax >= 100){
         unlockedskin[4] = "1"
         achievements[2] = "1"
         document.querySelector(".ac2").style.backgroundColor = "green"
+        unlockMedal(83040)
     }
 
-    if (achievements[3] == "1" || bees.queen.bees > 0){
+    if (achievements[3] == "1" || bees.queen.bees >= 1){
         unlockedskin[5] = "1"
         achievements[3] = "1"
         document.querySelector(".ac3").style.backgroundColor = "green"
+        unlockMedal(83039)
     }
 
     if (achievements[4] == "1" || beeswaxbuffs[1] == "1"){
         unlockedskin[9] = "1"
         achievements[4] = "1"
         document.querySelector(".ac4").style.backgroundColor = "green"
+        unlockMedal(83041)
     }
 
-    if (achievements[5] == "1" || hive.bees > 1000000000){
-        unlockedskin[8] = "1"
+    if (achievements[5] == "1" || hive.bees >= 1000000000){
+        unlockedskin[12] = "1"
         achievements[5] = "1"
         document.querySelector(".ac5").style.backgroundColor = "green"
+        unlockMedal(83044)
     }
 
-    if (achievements[6] == "1" || hive.bees > 2000){
-        unlockedskin[14] = "1"
+    if (achievements[6] == "1" || hive.bees >= 2000){
+        unlockedskin[10] = "1"
         achievements[6] = "1"
         document.querySelector(".ac6").style.backgroundColor = "green"
+        unlockMedal(83042)
     }
 
-    if (achievements[7] == "1" || hive.bees > 20000){
-        unlockedskin[15] = "1"
+    if (achievements[7] == "1" || hive.bees >= 20000){
+        unlockedskin[11] = "1"
         achievements[7] = "1"
         document.querySelector(".ac7").style.backgroundColor = "green"
+        unlockMedal(83043)
     }
 
     // BEESWAXBUFFS

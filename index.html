@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Dom-bee-nation</title>
 
+    <script src="https://cdn.jsdelivr.net/gh/PsychoGoldfishNG/NewgroundsIO-JS@8c72515/dist/NewgroundsIO.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin: 0%; background-color: white;">
@@ -143,7 +144,7 @@
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); width: fit-content; text-align: center;">
                 <div class="acbox ac0">
                     <p>So it bee-gins...</p>
-                    <i>Assign 1 bee to the swarm.<br>Reward: Jonsey</i>
+                    <i>Assign 1 bee to the swarm.<br>Reward: Warm-Up Bee</i>
                 </div>
                 <div class="acbox ac1">
                     <p>D-hive-ersity!</p>
@@ -171,7 +172,7 @@
                 </div>
                 <div class="acbox ac5">
                     <p>A beellion bees to get beesiness done!</p>
-                    <i>Get 1 billion bees<br>Reward: Warm-Up Bee</i>
+                    <i>Get 1 billion bees<br>Reward: B+++</i>
                 </div>
             </div>
         </details>
@@ -197,7 +198,7 @@
                     <h3 class="cosname" style="margin-bottom: 0%;">Null</h3>
                     <i class="cosinternal">(null)</i><br><br>
                     <h5 style="margin: 0%;">Artist:</h5>
-                    <a class="cosart" style="margin: 0%;" href="">None</a>
+                    <p class="cosart" style="margin: 0px;">None</p>
                 </div>
             </div>
 
@@ -308,12 +309,26 @@
                 <button onclick="clearInterval(aclife); localStorage.clear(); location.reload()">RESET DATA</button>
             </details>
         </details>
+
+        <details>
+            <summary><h1 style="margin: 0%; display: inline-block">ABOUT</h1></summary>
+            <p>Jacob A. G. Taylor, 2023-2025</p>
+            <p class="ver"></p>
+        </details>
+        <div style="height: 128px;"></div>
     </center>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" ></script>
 
+    <script src="nginit.js"></script>
     <script src="bees.js"></script>
     <script src="check.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('touchstart', touchHandler, {passive:false})
+        document.addEventListener('touchmove', touchHandler, {passive:false})
+        document.addEventListener('touchend', touchHandler, {passive:false})
+        document.addEventListener('touchcancel', touchHandler, {passive:false})
+    </script>
 </body>
 </html>
